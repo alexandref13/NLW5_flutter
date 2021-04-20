@@ -9,7 +9,7 @@ void main() {
     GetMaterialApp(
       title: "DevQuiz",
       debugShowCheckedModeBanner: false,
-      initialRoute: '/homePage',
+      initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => SplashPage()),
         GetPage(name: '/homePage', page: () => HomePage()),
