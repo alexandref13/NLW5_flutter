@@ -1,11 +1,11 @@
 import 'package:dev_quiz/core/core.dart';
 import 'package:flutter/material.dart';
 
-class AnwserWidget extends StatelessWidget {
+class AnswerWidget extends StatelessWidget {
   final String title;
   final bool isRight;
   final bool isSelected;
-  const AnwserWidget({
+  const AnswerWidget({
     Key? key,
     required this.title,
     this.isRight = false,

@@ -1,6 +1,6 @@
 import 'package:dev_quiz/core/app_gradients.dart';
 import 'package:dev_quiz/core/app_images.dart';
-import 'package:dev_quiz/src/pages/splash/controllers/splash_controller.dart';
+import 'package:dev_quiz/src/pages/splash/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

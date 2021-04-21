@@ -1,40 +1,72 @@
-import 'package:dev_quiz/core/core.dart';
-import 'package:dev_quiz/src/pages/home/widgets/quizCard/container_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:dev_quiz/core/core.dart';
+import 'package:dev_quiz/src/pages/shared/widgets/progressIndicator/progress_indicator_widget.dart';
 
 class QuizCardWidget extends StatelessWidget {
-  const QuizCardWidget({Key? key}) : super(key: key);
+  final String title;
+  final String image;
+  final int questionAnswered;
+  final List question;
+  final double percent;
 
+  const QuizCardWidget({
+    Key? key,
+    required this.title,
+    required this.image,
+    required this.questionAnswered,
+    required this.question,
+    required this.percent,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed('/challengePage');
+      },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: GridView.count(
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          crossAxisCount: 2,
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.fromBorderSide(
+            BorderSide(
+              color: AppColors.border,
+            ),
+          ),
+          color: AppColors.white,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            containerWidget(
-              'Gerenciamento de Estado',
-              AppImages.data,
-              "3 de 10",
+            Image.asset(
+              'assets/images/$image.png',
+              height: 40,
+              width: 40,
             ),
-            containerWidget(
-              'Construindo Interfaces',
-              AppImages.laptop,
-              "10 de 10",
+            SizedBox(
+              height: 24,
             ),
-            containerWidget(
-              'Integração Nativa',
-              AppImages.hierarchy,
-              "9 de 10",
+            Text(title, style: AppTextStyles.heading15),
+            SizedBox(
+              height: 24,
             ),
-            containerWidget(
-              'Widgets do Flutter',
-              AppImages.data,
-              "5 de 10",
-            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('$questionAnswered de ${question.length}',
+                    style: AppTextStyles.body11),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.only(left: 21, right: 16),
+                    child: ProgressIndicatorWidget(
+                      value: percent,
+                    ),
+                  ),
+                )
+              ],
+            )
           ],
         ),
       ),
