@@ -1,4 +1,5 @@
 import 'package:dev_quiz/core/core.dart';
+import 'package:dev_quiz/src/pages/challenge/challenge_page.dart';
 import 'package:dev_quiz/src/pages/home/home_controller.dart';
 import 'package:dev_quiz/src/pages/home/home_state.dart';
 import 'package:dev_quiz/src/pages/home/widgets/appBar/app_bar_widget.dart';
@@ -44,6 +45,10 @@ class HomePage extends StatelessWidget {
                             crossAxisCount: 2,
                             children: controller.quizzes!
                                 .map((e) => QuizCardWidget(
+                                      onTap: () {
+                                        controller.question.value = e.question;
+                                        Get.toNamed('/challengePage');
+                                      },
                                       title: e.title,
                                       image: e.image,
                                       percent: e.questionAnswered /

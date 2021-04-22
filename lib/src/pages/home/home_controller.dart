@@ -1,6 +1,7 @@
 import 'package:dev_quiz/src/pages/home/home_state.dart';
-import 'package:dev_quiz/src/pages/shared/models/quiz_model.dart';
-import 'package:dev_quiz/src/pages/shared/models/user_model.dart';
+import 'package:dev_quiz/src/shared/models/question_model.dart';
+import 'package:dev_quiz/src/shared/models/quiz_model.dart';
+import 'package:dev_quiz/src/shared/models/user_model.dart';
 import 'package:get/get.dart';
 
 import 'home_repository.dart';
@@ -10,6 +11,7 @@ class HomeController extends GetxController {
 
   UserModel? user;
   List<QuizModel>? quizzes;
+  var question = <QuestionModel>[].obs;
 
   final repository = HomeRepository();
 

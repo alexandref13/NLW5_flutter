@@ -21,6 +21,23 @@
           "isRights": true
         }
       ]
+    },{
+      "title": "Está curtindo a NLW 5?",
+      "answers": [
+        { 
+          "title": "Tá legal!"
+        },
+        {
+          "title": "Tá bacana!"
+        },
+        {
+          "title": "Tá show!"
+        },
+        {
+          "title": "Tá nice!",
+          "isRights": true
+        }
+      ]
     }
   ]
  }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:dev_quiz/core/core.dart';
-import 'package:dev_quiz/src/pages/shared/widgets/progressIndicator/progress_indicator_widget.dart';
+import 'package:dev_quiz/src/shared/widgets/progressIndicator/progress_indicator_widget.dart';
 
 class QuizCardWidget extends StatelessWidget {
   final String title;
@@ -10,6 +9,7 @@ class QuizCardWidget extends StatelessWidget {
   final int questionAnswered;
   final List question;
   final double percent;
+  final VoidCallback onTap;
 
   const QuizCardWidget({
     Key? key,
@@ -18,13 +18,12 @@ class QuizCardWidget extends StatelessWidget {
     required this.questionAnswered,
     required this.question,
     required this.percent,
+    required this.onTap,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Get.toNamed('/challengePage');
-      },
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
