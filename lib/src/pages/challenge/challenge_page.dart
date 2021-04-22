@@ -18,10 +18,6 @@ class ChallengePage extends StatelessWidget {
     QuizController quizController = Get.put(QuizController());
 
     nextPage() {
-      if (challengeController.currentPage.value ==
-          homeController.question.length) {
-        onAlertButtonPressed(context, 'parabains', '/homePage');
-      }
       challengeController.pageController.nextPage(
         duration: Duration(milliseconds: 50),
         curve: Curves.linear,
@@ -53,7 +49,10 @@ class ChallengePage extends StatelessWidget {
           children: homeController.question
               .map((e) => QuizWidget(
                     question: e,
-                    onChange: nextPage,
+                    onChange: challengeController.currentPage.value !=
+                            homeController.question.length
+                        ? nextPage
+                        : () {},
                   ))
               .toList(),
         );
@@ -76,9 +75,9 @@ class ChallengePage extends StatelessWidget {
                           }
                         : () {
                             onAlertButtonPressed(
-                                context,
-                                'Você não pular uma questão com uma resposta já selecionada!',
-                                '');
+                              context,
+                              'Você não pular uma questão com uma resposta já selecionada!',
+                            );
                           },
                   )),
                 if (challengeController.currentPage.value ==
@@ -87,9 +86,10 @@ class ChallengePage extends StatelessWidget {
                     child: NextButtonWidget.green(
                       label: 'Finalizar',
                       onTap: () {
-                        onAlertButtonPressed(context, 'parabains', "/homePage");
-
-                        Get.offNamed('/homePage');
+                        quizController.indexSelected.value == -1
+                            ? onAlertButtonPressed(context,
+                                "Você deve selecionar uma resposta para finalizar o quiz!")
+                            : Get.offNamed('/completedPage');
                       },
                     ),
                   )
