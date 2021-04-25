@@ -8,7 +8,9 @@ import 'home_repository.dart';
 
 class HomeController extends GetxController {
   var state = HomeState.empty.obs;
-
+  var title = ''.obs;
+  var length = 0.obs;
+  var questionAnswered = 0.obs;
   UserModel? user;
   List<QuizModel>? quizzes;
   var question = <QuestionModel>[].obs;

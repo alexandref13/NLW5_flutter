@@ -47,6 +47,10 @@ class HomePage extends StatelessWidget {
                                 .map((e) => QuizCardWidget(
                                       onTap: () {
                                         controller.question.value = e.question;
+                                        controller.title.value = e.title;
+                                        controller.length.value =
+                                            e.question.length;
+
                                         Get.toNamed('/challengePage');
                                       },
                                       title: e.title,

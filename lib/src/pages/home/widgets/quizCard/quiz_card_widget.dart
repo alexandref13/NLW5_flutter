@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:dev_quiz/core/core.dart';
 import 'package:dev_quiz/src/shared/widgets/progressIndicator/progress_indicator_widget.dart';
 

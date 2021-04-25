@@ -8,7 +8,7 @@ import 'package:dev_quiz/src/shared/models/question_model.dart';
 
 class QuizWidget extends StatelessWidget {
   final QuestionModel question;
-  final VoidCallback onChange;
+  final ValueChanged<bool> onChange;
   const QuizWidget({
     Key? key,
     required this.question,
@@ -36,10 +36,10 @@ class QuizWidget extends StatelessWidget {
                 return AnswerWidget(
                   answer: question.answers[i],
                   isSelected: quizController.indexSelected.value == i,
-                  onTap: () {
+                  onTap: (value) {
                     quizController.indexSelected.value = i;
                     Future.delayed(Duration(seconds: 1))
-                        .then((value) => onChange());
+                        .then((_) => onChange(value));
                   },
                 );
               },

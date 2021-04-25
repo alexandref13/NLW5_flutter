@@ -17,14 +17,6 @@ class ChallengePage extends StatelessWidget {
     ChallengeController challengeController = Get.put(ChallengeController());
     QuizController quizController = Get.put(QuizController());
 
-    nextPage() {
-      challengeController.pageController.nextPage(
-        duration: Duration(milliseconds: 50),
-        curve: Curves.linear,
-      );
-      quizController.indexSelected.value = -1;
-    }
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100),
@@ -35,7 +27,7 @@ class ChallengePage extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-                Get.back();
+                Get.offNamed('/homePage');
               },
             ),
             QuestionIndicatorWidget(),
@@ -47,13 +39,15 @@ class ChallengePage extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           controller: challengeController.pageController,
           children: homeController.question
-              .map((e) => QuizWidget(
-                    question: e,
-                    onChange: challengeController.currentPage.value !=
-                            homeController.question.length
-                        ? nextPage
-                        : () {},
-                  ))
+              .map(
+                (e) => QuizWidget(
+                  question: e,
+                  onChange: challengeController.currentPage.value !=
+                          homeController.question.length
+                      ? challengeController.selectedAnswerAndNextpage
+                      : challengeController.selectedAnswer,
+                ),
+              )
               .toList(),
         );
       }),
@@ -71,7 +65,7 @@ class ChallengePage extends StatelessWidget {
                     label: 'Pular',
                     onTap: quizController.indexSelected.value == -1
                         ? () {
-                            nextPage();
+                            challengeController.nextPage();
                           }
                         : () {
                             onAlertButtonPressed(

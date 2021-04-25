@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 class AnswerWidget extends StatelessWidget {
   final AnswerModel answer;
   final bool isSelected;
-  final VoidCallback onTap;
+  final ValueChanged<bool> onTap;
   const AnswerWidget({
     Key? key,
     required this.answer,
@@ -39,7 +39,11 @@ class AnswerWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: GestureDetector(
-        onTap: quizController.indexSelected.value == -1 ? onTap : () {},
+        onTap: quizController.indexSelected.value == -1
+            ? () {
+                onTap(answer.isRights);
+              }
+            : () {},
         child: Container(
           height: 80,
           decoration: BoxDecoration(
